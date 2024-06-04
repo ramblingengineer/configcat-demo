@@ -9,6 +9,8 @@
   - [Flagsmith](https://www.flagsmith.com/)
   - [Unleash](https://www.getunleash.io/) 
 
+- Buat yang mau coba pakai repository ini, rubah API Key di [ConfigCatDemoConfig](src/main/java/edu/rein/configcatdemo/ConfigcatDemoConfig.java)
+
 ## Apa itu feature-flag
 
 Feature flag itu hanya sebuah toggle on/off buat fitur aplikasi, yang biasanya merupakan fitur baru. 
