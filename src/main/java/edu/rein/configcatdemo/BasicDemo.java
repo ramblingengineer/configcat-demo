@@ -8,10 +8,9 @@ public class BasicDemo {
     public static void main(String[] args) {
         for (int i = 1; i <= RestaurantRepo.restaurants.size(); i++) {
             Restaurant r = RestaurantRepo.restaurants.get(i);
-            ;
-
-            System.out.println("Restaurant di " + r.city() + " " + r.province() + " pajaknya adalah: " + TaxServiceFactory.taxService.getTax(i));
-
+            System.out.println("Restaurant di " + r.city() + " " + r.province()
+                    + " pajaknya adalah: " + TaxServiceFactory.taxService.getTax(i)
+            );
         }
 
         System.exit(0);
