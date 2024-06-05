@@ -22,7 +22,7 @@ Lalu setelah berapa hari tiba-tiba semua orang kembali ke layout lama.
 Selain dengan sistem "Canary Deployment" hal itu juga bisa dilakukan dengan memakai feature flag.
 Jadi fitur mu bisa hotswitch dan dikontrol oleh aplikasi.
 
-### Flowchart
+### General Feature Flag Tools Flowchart
 
 ```mermaid
 
@@ -32,7 +32,19 @@ flowchart TD
     fe -- Get feature flag state --> fem["Frontends Memory"]
 ```
 
-## Usecase
+### Di bawah ini adalah salah satu solusi buat orang pelit, biar ga perlu fetch dari front end. [Ref di sini](https://configcat.com/docs/requests/#call-your-backend-instead-of-the-configcat-cdn).
+
+Kelemahannya adalah kita harus develop dan manage cache di front end dan logic di backend kita.
+```mermaid
+
+flowchart TD
+    ff_server["Feature Flag Server (ConfigCat)"] <-- Fetch feature config --> be["FeatureFlag Facade (Backend)"]
+    be -- Get feature flag state --> bem["Backend Memory"]
+    fe -- Get feature flag state --> fem["Frontends Memory"]
+    fe -. Get feature flag state .-> be
+```
+
+## Usecase for Demo
 
 ### Initial Application
 
@@ -61,7 +73,7 @@ Rollout perubahan perhitungan pajak harus smooth dan bisa di rollback kapan saja
 
 ```mermaid
 flowchart TD
-    subgraph calc_tax_ff["Pajak dengan Feature Flag Check"]
+    subgraph calc_tax_ff["Pajak dengan Feature Flag Check, bisa dipakai untuk A/B testing."]
         calc_tax("Pilih Hitung Pajak")
         enable_tax_24{"Cek pajak 2024 aktif?"}
         calc_tax_pre24("Hitung pajak 5%")
@@ -80,7 +92,7 @@ flowchart TD
     enable_tax_24 -- Ya --> calc_tax_24
 ```
 
-#### _Quiz Time_
+### _Quiz Time_
 
 _Bila ini aplikasi dengan model OOP, 
 design pattern apa yang dipakai untuk pemilihan fitur di atas?_
